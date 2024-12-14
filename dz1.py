@@ -43,6 +43,9 @@ class Reviewer(Mentor):
  
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
+
+cool_lecturer = Lecturer('Jim', 'Green')
+cool_lecturer.courses_attached += ['Python']
  
 cool_reviewer = Reviewer('Some', 'Buddy')
 cool_reviewer.courses_attached += ['Python']
@@ -50,5 +53,10 @@ cool_reviewer.courses_attached += ['Python']
 cool_reviewer.rate_hw(best_student, 'Python', 10)
 cool_reviewer.rate_hw(best_student, 'Python', 10)
 cool_reviewer.rate_hw(best_student, 'Python', 10)
- 
-print(best_student.grades)
+
+best_student.add_lecture_grade(cool_lecturer, 'Python', 5)
+best_student.add_lecture_grade(cool_lecturer, 'Python', 7)
+best_student.add_lecture_grade(cool_lecturer, 'Python', 9)
+
+print(f'Оценки студента: {best_student.grades}')
+print(f'Оценки лектора: {cool_lecturer.grades}')
