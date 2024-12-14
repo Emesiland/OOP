@@ -54,6 +54,29 @@ class Lecturer(Mentor):
         super().__init__(name, surname)
         self.grades = {}
 
+    def average_grade(self):
+        total_sum = sum(sum(grade_list) for grade_list in self.grades.values())
+        total_count = sum(len(grade_list) for grade_list in self.grades.values())
+        return round(total_sum / total_count, 1) if total_count > 0 else 0.0
+
+    def __str__(self):
+        return f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.average_grade()}'
+
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            raise TypeError("Можно сравнивать только лекторов.")
+        return self.average_grade() < other.average_grade()
+
+    def __gt__(self, other):
+        if not isinstance(other, Lecturer):
+            raise TypeError("Можно сравнивать только лекторов.")
+        return self.average_grade() > other.average_grade()
+
+    def __eq__(self, other):
+        if not isinstance(other, Lecturer):
+            raise TypeError("Можно сравнивать только лекторов.")
+        return self.average_grade() == other.average_grade()
+
 class Reviewer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
